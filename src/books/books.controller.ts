@@ -1,12 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param } from '@nestjs/common';
 import { booksService } from './books.service';
 
 @Controller('books')
 export class booksController {
-  constructor(public booksService: booksService) {} //todo- Adjuct public to private.
-  // Adding a book
+  constructor(public booksService: booksService) {} //todo- Adjuct public to private - recomended.
+  
   @Post()
-  addBooks(
+  addBooks( // Adding a book
     @Body('title') bookTitle: string,
     @Body('author') bookAuthor: object,
     @Body('firstName') authorFirstName: string,
@@ -29,4 +29,14 @@ export class booksController {
     // return { id: generatedId };
     return  feedback ;
   }
-} //title:string,author:object,firstName:string,lastName:string,email:string,dateOfBirth:Date, year_of_publication:string, description:string
+
+  @Get()
+  getBooks(){  // get all books
+    return this.booksService.getBooks();
+  }
+
+  @Get(':id')
+  getBook(@Param('id') bookId:string,){  // get a single book
+    return this.booksService.getBook(bookId);
+  }
+} 
