@@ -1,9 +1,9 @@
-import { Body, Controller, Post, Get, Param } from '@nestjs/common';
-import { booksService } from './books.service';
+import { Body, Controller, Post, Get, Param, Patch } from '@nestjs/common';
+import { BooksService } from './books.service';
 
 @Controller('books')
 export class booksController {
-  constructor(public booksService: booksService) {} //todo- Adjuct public to private - recomended.
+  constructor(public booksService: BooksService) {} //todo- Adjuct public to private - recomended.
   
   @Post()
   addBooks( // Adding a book
@@ -39,4 +39,7 @@ export class booksController {
   getBook(@Param('id') bookId:string,){  // get a single book
     return this.booksService.getBook(bookId);
   }
+
+  // @Patch(':id')
+  // updateStock(@Param('id') bookId:string, @Body){}
 } 
