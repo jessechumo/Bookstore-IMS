@@ -49,24 +49,28 @@ export class BooksService {
       description,
   });
     const result = await newBook.save();
-    console.log(result);
-    let creationMsg = title + ' was added ';
-
-
+    let creationMsg = title + ' was succesfully added with the id below ';
     // return bookId;
-    return [creationMsg, newBook];
+    return [creationMsg, result.id as string];
   }
 
-  getBooks() {
-    return [...this.books];
+  async getBooks() {
+    const books = await this.bookModel.find().exec();
+    return books as Book[];
   }
 
-  getBook(bookId: string) {
-    const book = this.books.find((bk) => bk.id === bookId);
+  async getBook(id: string):Promise<Book> {
+    let book;
+    try{
+      book = await this.bookModel.findById(id);
+    } catch(error){
+      throw new NotFoundException('The id you entered is invalid');
+    }
+     
     if (!book) {
       // If book does not exist
-      throw new NotFoundException('Could not find this book');
+      throw new NotFoundException('This book does not exist in our inventory');
     }
-    return { ...book };
+    return book;
   }
 }

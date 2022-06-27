@@ -6,7 +6,7 @@ export class booksController {
   constructor(public booksService: BooksService) {} //todo- Adjuct public to private - recomended.
   
   @Post()
-  addBooks( // Adding a book
+  async addBooks( // Adding a book
     @Body('title') bookTitle: string,
     @Body('author') bookAuthor: object,
     @Body('firstName') authorFirstName: string,
@@ -15,8 +15,8 @@ export class booksController {
     @Body('dateOfBirth') authorDOB: Date,
     @Body('yearOfPublication') bookYP: string,
     @Body('description') bookDesc: string,
-  ): any {
-    const feedback = this.booksService.addBook(
+  ){
+    const feedback = await this.booksService.addBook(
       bookTitle,
       bookAuthor,
       authorFirstName,
@@ -31,13 +31,15 @@ export class booksController {
   }
 
   @Get()
-  getBooks(){  // get all books
-    return this.booksService.getBooks();
+  async getBooks(){  // get all books
+   const books = await this.booksService.getBooks();
+   return books;
   }
 
   @Get(':id')
-  getBook(@Param('id') bookId:string,){  // get a single book
-    return this.booksService.getBook(bookId);
+  async getBook(@Param('id') bookId:string,){  // get a single book
+    const book =await this.booksService.getBook(bookId);
+    return book;
   }
 
   // @Patch(':id')
