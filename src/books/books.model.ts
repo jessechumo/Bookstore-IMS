@@ -11,6 +11,7 @@ export const bookSchema = new mongoose.Schema({
   yearOfPublication: { type: String},
 });
 
+
 export interface Book {
   id: string;
   title: string;

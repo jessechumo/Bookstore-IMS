@@ -6,10 +6,10 @@ import { Book } from './books.model';
 
 @Injectable()
 export class BooksService {
-  private books: Book[] = [];
+  public books: Book[] = [];
 
   constructor(
-    @InjectModel('Book') private readonly bookModel: Model<Book>,
+    @InjectModel('Book') public readonly bookModel: Model<Book>,
     ){}
 
   async addBook(
@@ -51,7 +51,7 @@ export class BooksService {
     const result = await newBook.save();
     let creationMsg = title + ' was succesfully added with the id below ';
     // return bookId;
-    return [creationMsg, result.id as string];
+    return [creationMsg, result.id as string, newBook];
   }
 
   async getBooks() {
@@ -73,4 +73,6 @@ export class BooksService {
     }
     return book;
   }
+
+   
 }

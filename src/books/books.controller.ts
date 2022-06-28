@@ -1,4 +1,5 @@
 import { Body, Controller, Post, Get, Param, Patch } from '@nestjs/common';
+import { AuthorService } from '../authors/author.service';
 import { BooksService } from './books.service';
 
 @Controller('books')
@@ -42,6 +43,9 @@ export class booksController {
     return book;
   }
 
+  
+
   // @Patch(':id')
   // updateStock(@Param('id') bookId:string, @Body){}
 } 
+
