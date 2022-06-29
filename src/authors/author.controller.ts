@@ -11,9 +11,9 @@ export class authorController {
     return authors;
   }
 
-  @Get(':author') // get a specific author.
-    async getAuthor(@Param('id') author:string,){
-        const singleAuthor = await this.authorService.getAuthor(author);
+  @Get(':firstName') // get a specific author.
+    async getAuthor(@Param('firstName') firstName:string,){
+        const singleAuthor = await this.authorService.getAuthor(firstName);
          return singleAuthor;
     }
   }

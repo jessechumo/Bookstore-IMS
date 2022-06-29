@@ -25,7 +25,7 @@ export class AuthorService {
   async getAuthor(firstName:string):Promise<Book> {
     let author;
     try{
-      author = await this.bookModel.find({"firstName":author},{'author':1,'_id':0})
+      author = await this.bookModel.find({"author.firstName":firstName},{'author':1,'_id':0})
     } catch(error){
       throw new NotFoundException('This author does not exist');
     }
