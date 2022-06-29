@@ -92,5 +92,22 @@ export class BooksService {
     return book;
   }
 
-   
+  async updateStock(stock:number):Promise<Book>{
+    let updatedStock; 
+    try{
+      updatedStock = await this.bookModel.find({"stock":stock})
+    } catch(error){
+      throw new NotFoundException('');
+    }
+     
+    if (!updatedStock) {
+      // If book does not exist
+      throw new NotFoundException('');
+    }
+    return updatedStock;
+  }
+
 }
+
+   
+
