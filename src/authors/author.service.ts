@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { query } from 'express';
 import { Model } from 'mongoose';
 import { Book } from '../books/books.model';
 import * as mongoose from 'mongoose';
