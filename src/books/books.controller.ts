@@ -52,7 +52,11 @@ export class booksController {
   }
   
 
-  // @Patch(':id')
+  @Patch('books/:stock')
+  async updateStock(@Param('stock') stock:number,){  // update stock
+    const updatedStock = await this.booksService.updateStock(stock);
+    return updatedStock;
+  }
   // updateStock(@Param('id') bookId:string, @Body){}
 } 
 

@@ -12,6 +12,7 @@ export const bookSchema = new mongoose.Schema({
    },
   description: { type: String},
   yearOfPublication: { type: String},
+  stock:{type:Number}
 });
 
 
@@ -25,4 +26,5 @@ export interface Book {
   dateOfBirth: Date;
   yearOfPublication: string;
   description: string;
+  stock:number;
 }
