@@ -1,8 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Author, Stock} from './books.model';
 import { Book } from './books.model';
-// import {authorObject} from './Authors/author.model';
+
 
 @Injectable()
 export class BooksService {
@@ -14,37 +15,25 @@ export class BooksService {
 
   async addBook(
     title: string,
-    author: object,
-    firstName: string,
-    lastName: string,
-    email: string,
-    dateOfBirth: Date,
+    author: Author, // Using Author interface defined in book.model file.
+    // firstName: string,
+    // lastName: string,
+    // email: string,
+    // dateOfBirth: Date,
     yearOfPublication: string,
     description: string,
+    stock: Stock,
   ) {
-    // let bookId = Math.random().toString();
 
-    // stock code
-    // let stock = 0;
-    // if (title) {
-    //   const counts = {};
-    //   const booksArray = [...this.books]
-    //   booksArray.forEach(function (x) {
-    //     counts[x] = (counts[x] || 0) + 1;
-    //   });
-    //   console.log(counts);
-    // }
-
-    // const stock = (title) => if;
-   
     const newBook = new this.bookModel({
       // bookId,
       title,
       author,
-      firstName,
-      lastName,
-      email,
-      dateOfBirth,
+      // firstName,
+      // lastName,
+      // email,
+      // dateOfBirth,
+      stock,
       yearOfPublication,
       description,
   });
@@ -57,12 +46,12 @@ export class BooksService {
     return [creationMsg, result.id as string];
   }
 
-  async getBooks() {
+  async getBooks() {  // get all books
     const books = await this.bookModel.find().exec();
     return books as Book[];
   }
 
-  async getBook(id: string):Promise<Book> {
+  async getBook(id: string):Promise<Book> { // get a single book
     let book;
     try{
       book = await this.bookModel.findById(id);
@@ -92,6 +81,8 @@ export class BooksService {
     return book;
   }
 
+
+   // stoock code
   async updateStock(stock:number):Promise<Book>{
     let updatedStock; 
     try{

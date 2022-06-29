@@ -1,5 +1,6 @@
 import { Body, Controller, Post, Get, Param, Patch } from '@nestjs/common';
 import { AuthorService } from '../authors/author.service';
+import { Author, Stock } from './books.model';
 import { BooksService } from './books.service';
 
 @Controller('api')
@@ -9,23 +10,17 @@ export class booksController {
   @Post('books')
   async addBooks( // Adding a book
     @Body('title') bookTitle: string,
-    @Body('author') bookAuthor: object,
-    @Body('firstName') authorFirstName: string,
-    @Body('lastName') authorLastName: string,
-    @Body('email') authorEmail: string,
-    @Body('dateOfBirth') authorDOB: Date,
+    @Body('author') bookAuthor: Author,
     @Body('yearOfPublication') bookYP: string,
     @Body('description') bookDesc: string,
+    @Body('stock') bookStock: Stock,
   ){
     const feedback = await this.booksService.addBook(
       bookTitle,
       bookAuthor,
-      authorFirstName,
-      authorLastName,
-      authorEmail,
-      authorDOB,
       bookYP,
       bookDesc,
+      bookStock,
     );
     // return { id: generatedId };
     return  feedback ;
