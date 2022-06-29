@@ -48,10 +48,13 @@ export class BooksService {
       yearOfPublication,
       description,
   });
+
+    newBook.validateSync();
     const result = await newBook.save();
     let creationMsg = title + ' was succesfully added with the id below ';
     // return bookId;
-    return [creationMsg, result.id as string, newBook];
+
+    return [creationMsg, result.id as string];
   }
 
   async getBooks() {
@@ -70,6 +73,21 @@ export class BooksService {
     if (!book) {
       // If book does not exist
       throw new NotFoundException('This book does not exist in our inventory');
+    }
+    return book;
+  }
+
+  async getYOP(yearOfPublication:string):Promise<Book> { //GET books by year of publication.
+    let book;
+    try{
+      book = await this.bookModel.find({"yearOfPublication":yearOfPublication})
+    } catch(error){
+      throw new NotFoundException('Enter a valid year');
+    }
+     
+    if (!book) {
+      // If book does not exist
+      throw new NotFoundException('Books from this year do not exist');
     }
     return book;
   }

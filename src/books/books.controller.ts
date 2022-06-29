@@ -2,11 +2,11 @@ import { Body, Controller, Post, Get, Param, Patch } from '@nestjs/common';
 import { AuthorService } from '../authors/author.service';
 import { BooksService } from './books.service';
 
-@Controller('books')
+@Controller('api')
 export class booksController {
   constructor(public booksService: BooksService) {} //todo- Adjuct public to private - recomended.
   
-  @Post()
+  @Post('books')
   async addBooks( // Adding a book
     @Body('title') bookTitle: string,
     @Body('author') bookAuthor: object,
@@ -30,19 +30,26 @@ export class booksController {
     // return { id: generatedId };
     return  feedback ;
   }
+  
 
-  @Get()
+  @Get('books')
   async getBooks(){  // get all books
    const books = await this.booksService.getBooks();
    return books;
   }
 
-  @Get(':id')
+  
+  @Get('books/:id')
   async getBook(@Param('id') bookId:string,){  // get a single book
     const book =await this.booksService.getBook(bookId);
     return book;
   }
 
+  @Get('books/yearOfPublication/:yearOfPublication')
+  async getYOP(@Param('yearOfPublication') yop:string,){  // get a book using year of publication.
+    const book = await this.booksService.getYOP(yop);
+    return book;
+  }
   
 
   // @Patch(':id')

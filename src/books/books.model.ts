@@ -6,7 +6,10 @@ export const bookSchema = new mongoose.Schema({
   firstName: { type: String },
   lastName: { type: String },
   email: { type: String },
-  dateOfBirth: { type: Date },
+  dateOfBirth: { type: Date,
+    min: '1010-01-01',  // Defining  the minimum and maximum date of birth.
+    max: '2010-01-01'
+   },
   description: { type: String},
   yearOfPublication: { type: String},
 });
