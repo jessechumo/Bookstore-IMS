@@ -1,7 +1,7 @@
-import { Body, Controller, Post, Get, Param, Patch } from '@nestjs/common';
-import { AuthorService } from '../authors/author.service';
-import { Author, Stock } from './books.model';
+import { Body, Controller, Post, Get, Param, Patch, Put } from '@nestjs/common';
+import { Author, Book, Stock } from './books.model';
 import { BooksService } from './books.service';
+import { UpdateStockDto } from './updateStock.dto';
 
 @Controller('api')
 export class booksController {
@@ -45,13 +45,29 @@ export class booksController {
     const book = await this.booksService.getYOP(yop);
     return book;
   }
+
+  // @Patch('books/stock/:id/')
+  // async updateStock(@Param('id') bookId:string, @Param('value') value:number){
+  //   const newStock = await this.booksService.updateStock(bookId,value)
+  //   return newStock;
+  // }
+
+  @Patch('books/stock/:id')
+  async updateStock(@Param('id') id: string, @Body() updateStockDto: UpdateStockDto): Promise<Book> {
+      return this.booksService.updateStock(id, updateStockDto);
+  }
+
+  // @Put('books/stock/:id')
+  // async updateStock(@Param('id') bookId:string, @Body() updateStock:StockUpdateDto):Promise<Book>{ 
+  //   return this.booksService.updateStock(bookId,updateStock)
+  // }
   
 
-  @Patch('books/:stock')
-  async updateStock(@Param('stock') stock:number,){  // update stock
-    const updatedStock = await this.booksService.updateStock(stock);
-    return updatedStock;
-  }
+  // @Patch('books/stock/:id') // using Patch instead of Put so as not to delete any field by mistake.
+  // async updateStock(@Param('id') bookId:string,){  // update stock
+  //   const updatedStock = await this.booksService.updateStock(bookId);
+  //   return updatedStock;
+  // }
   // updateStock(@Param('id') bookId:string, @Body){}
 } 
 

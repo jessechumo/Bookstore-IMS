@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 
 
 // Defining schemas for mongo db
-const authorSchema = new mongoose.Schema({
+export const authorSchema = new mongoose.Schema({
   firstName: { type: String },
   lastName: { type: String },
   email: { type: String },
@@ -22,7 +22,8 @@ export const bookSchema = new mongoose.Schema({
   author: {type: authorSchema, required:true },
   description: { type: String, required:true },
   yearOfPublication: { type: String, required:true },
-  stock:{type:stockSchema, required:false},
+  stock:{type:stockSchema},
+ 
 });
 
 
