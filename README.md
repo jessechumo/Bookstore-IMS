@@ -30,20 +30,21 @@ $ npm i
 $ npm run start:dev
 ```
 
-- Adding a book to the inventory. Sample book object shown below.
+- Adding a book to the inventory. Sample book object shown below. The stockStatus will be dynamically derived from the  stock value given.
 ``` POST ``` ``` http://localhost:3000/api/books```
 
 ```
 {
-    "title":"Principles of Data Structures Using C and C++",
+    "title":"C and C++",
     "author":{
         "firstName":"Vinu",
-        "lastName":"V",
+        "lastName":"vii",
         "email":"vinuv@gmail.com",
         "dateOfBirth":"21-12-1967"
     },
     "description":"become an ace in data structures today",
-    "yearOfPublication":"2008"
+    "yearOfPublication":"2008",
+     "stock":7
 }
 ```
 
@@ -63,6 +64,9 @@ $ npm run start:dev
 - Get a book by year of publication.
 ```GET``` ```http://localhost:3000/api/books/yearOfPublication/2008```
 
+- Update stock.uses update by id.
+```PUT``` ```http://localhost:3000/api/books/stock/62be3ece8cf778bade2b28d3```
+
 ## Test
 
 ```bash
@@ -72,4 +76,22 @@ $ npm run test
 # test coverage
 $ npm run test:cov
 ```
+## Database Design
+
+| Field       | Data Type   |
+| ----------- | ----------- |
+|  _id    |   string    |
+|  title      |   string    |
+|  author     | Object      |
+|  author.firstName     | string      |
+|author.lastName|string|
+|author.email|string|
+|dateOfBirth|string|
+|yearOfPublication| string|
+| description| string|
+ | stock| number|
+|stockStatus| string|
+|stockHistory| number|
+
+- Todo, Change datatypes for author.email,author.dateOfBirth and yearOfPublication and perform data validation.
 
