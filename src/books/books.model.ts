@@ -24,7 +24,7 @@ export const bookSchema = new mongoose.Schema({
   yearOfPublication: { type: String, required:true },
   stock:{type:Number},
   stockStatus:{type:String},
-  // stockHisory:{type:Array}
+  stockHisory:{type:Array}
 });
 
 
@@ -47,5 +47,5 @@ export interface Book {
   description: string;
   stock: number;
   stockStatus: string;
-  // stockHistory: Array<number>
+  stockHistory: number[]
 }

@@ -15,7 +15,7 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Welcome to the bookstore inventory management system!"', () => {
+    it('should return specified message', () => {
       expect(appController.getHello()).toBe('Welcome to the bookstore inventory management system!');
     });
   });

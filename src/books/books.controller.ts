@@ -15,6 +15,7 @@ export class booksController {
     @Body('description') bookDesc: string,
     @Body('stock') bookStock: number,
     @Body('stockStatus') bookStockStatus: string,
+    @Body('stockHistory') bookStockHistory: number[],
   ){
     const feedback = await this.booksService.addBook(
       bookTitle,
@@ -23,6 +24,7 @@ export class booksController {
       bookDesc,
       bookStock,
       bookStockStatus,
+      bookStockHistory
     );
     // return { id: generatedId };
     return  feedback ;
@@ -48,11 +50,7 @@ export class booksController {
     return book;
   }
 
-  // @Patch('books/stock/:id')
-  // async updateStock(@Param('id') bookId:string, stock:number){  // @Param('stock')
-  //   const newStock = await this.booksService.updateStock(bookId,stock)
-  //   return newStock;
-  // }
+  
 
   @Put('books/stock/:id')
   async updateStock(@Param('id') id: string, @Body() updateStockDto: UpdateStockDto): Promise<Book> {
@@ -60,17 +58,6 @@ export class booksController {
      return newStock;
   }
 
-  // @Put('books/stock/:id')
-  // async updateStock(@Param('id') bookId:string, @Body() updateStock:StockUpdateDto):Promise<Book>{ 
-  //   return this.booksService.updateStock(bookId,updateStock)
-  // }
   
-
-  // @Patch('books/stock/:id') // using Patch instead of Put so as not to delete any field by mistake.
-  // async updateStock(@Param('id') bookId:string,){  // update stock
-  //   const updatedStock = await this.booksService.updateStock(bookId);
-  //   return updatedStock;
-  // }
-  // updateStock(@Param('id') bookId:string, @Body){}
 } 
 

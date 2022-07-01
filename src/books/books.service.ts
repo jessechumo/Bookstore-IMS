@@ -17,7 +17,7 @@ export class BooksService {
     description: string,
     stock: number,
     stockStatus: string,
-    // stockHisory: [],
+    stockHisory: number[],
   ) {
     const newBook = new this.bookModel({
       title,
@@ -27,9 +27,15 @@ export class BooksService {
       stock,
     });
 
+
+    
     newBook.validateSync();
     const result = await newBook.save(); // saving the data to the database.
     let creationMsg = title + ' was succesfully added';
+    
+
+    
+    
 
     // Dynamically assigning stockStatus based on the stock value.
     if (result.stock === 0)
@@ -55,6 +61,18 @@ export class BooksService {
         { _id: result.id },
         { $set: { stockStatus: 'Good' } },
       );
+
+      let arr = await this.bookModel.updateOne(
+        {_id:result.id},
+        { $set: { stockHistory:[1] } });
+
+      
+
+      
+        
+
+      console.log(arr)
+      console.log(result.stock)
 
     // updated book with dynamically set stockStatus
     const updatedBook = await this.bookModel.findById(result.id, { __v: 0 });
@@ -112,6 +130,13 @@ export class BooksService {
   async updateStock(id: string, stockUpdates: UpdateStockDto): Promise<Book> {
     await this.bookModel.findByIdAndUpdate(id, stockUpdates, { new: true });
     let newStock = await this.bookModel.findById(id, { stock: 1 });
+
+   
+
+     await this.bookModel.updateOne({_id:id}, { $set: { stockHistory:newStock.stock } });
+    
+    
+
 
     
     if (newStock.stock === 0)

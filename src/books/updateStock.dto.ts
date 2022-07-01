@@ -9,6 +9,7 @@ export class UpdateStockDto {
     stock:number
 
     stockStatus:string
+    stockHistory:number[]
       
 } 
 
