@@ -1,11 +1,11 @@
 import { Body, Controller, Post, Get, Param, Patch, Put } from '@nestjs/common';
-import { Author, Book, Stock } from './books.model';
+import { Author, Book,} from './books.model';
 import { BooksService } from './books.service';
 import { UpdateStockDto } from './updateStock.dto';
 
 @Controller('api')
 export class booksController {
-  constructor(public booksService: BooksService) {} //todo- Adjuct public to private - recomended.
+  constructor(public booksService: BooksService) {}
   
   @Post('books')
   async addBooks( // Adding a book
@@ -13,7 +13,8 @@ export class booksController {
     @Body('author') bookAuthor: Author,
     @Body('yearOfPublication') bookYP: string,
     @Body('description') bookDesc: string,
-    @Body('stock') bookStock: Stock,
+    @Body('stock') bookStock: number,
+    @Body('stockStatus') bookStockStatus: string,
   ){
     const feedback = await this.booksService.addBook(
       bookTitle,
@@ -21,6 +22,7 @@ export class booksController {
       bookYP,
       bookDesc,
       bookStock,
+      bookStockStatus,
     );
     // return { id: generatedId };
     return  feedback ;
@@ -46,15 +48,16 @@ export class booksController {
     return book;
   }
 
-  // @Patch('books/stock/:id/')
-  // async updateStock(@Param('id') bookId:string, @Param('value') value:number){
-  //   const newStock = await this.booksService.updateStock(bookId,value)
+  // @Patch('books/stock/:id')
+  // async updateStock(@Param('id') bookId:string, stock:number){  // @Param('stock')
+  //   const newStock = await this.booksService.updateStock(bookId,stock)
   //   return newStock;
   // }
 
-  @Patch('books/stock/:id')
+  @Put('books/stock/:id')
   async updateStock(@Param('id') id: string, @Body() updateStockDto: UpdateStockDto): Promise<Book> {
-      return this.booksService.updateStock(id, updateStockDto);
+   const newStock = await this.booksService.updateStock(id, updateStockDto);
+     return newStock;
   }
 
   // @Put('books/stock/:id')

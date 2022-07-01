@@ -1,15 +1,15 @@
 
-import { IsNotEmpty, IsNumber, IsObject} from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 
 export class UpdateStockDto {
     @IsNotEmpty()
-    @IsObject()
-    stock:{
-       
-        value:number; 
-    }
-         
+    @IsNumber()
 
-          
-}
+    stock:number
+
+    stockStatus:string
+      
+} 
+
+// stockHistory:Array<number>  

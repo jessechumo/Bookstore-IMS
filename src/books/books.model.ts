@@ -12,18 +12,19 @@ export const authorSchema = new mongoose.Schema({
    }
 })
 
-const stockSchema = new mongoose.Schema({
-  value:{type:Number},
-  status:{type:String}
-})
+// const stockSchema = new mongoose.Schema({
+//   value:{type:Number},
+//   status:{type:String}
+// })
 
 export const bookSchema = new mongoose.Schema({
   title: { type: String, required:true },
   author: {type: authorSchema, required:true },
   description: { type: String, required:true },
   yearOfPublication: { type: String, required:true },
-  stock:{type:stockSchema},
- 
+  stock:{type:Number},
+  stockStatus:{type:String},
+  // stockHisory:{type:Array}
 });
 
 
@@ -34,15 +35,17 @@ export interface Author {
   email: string;
   dateOfBirth: string;
 }
-export interface Stock {
-  value:number;
-  status:string;
-}
+// export interface Stock {
+//   value:number;
+//   status:string;
+// }
 export interface Book {
   id: string;
   title: string;
   author: {[key:string]:Author}  // Using the earlier defined Author interface.
   yearOfPublication: string;
   description: string;
-  stock: {[key:string]:Stock}
+  stock: number;
+  stockStatus: string;
+  // stockHistory: Array<number>
 }
