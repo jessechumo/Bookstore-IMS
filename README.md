@@ -15,7 +15,7 @@ A Rest API for managing a bookstore inventory.
 $ git clone https://github.com/Jesse-Bett/Bookstore-IMS.git 
 ```  
 
-- Install all dependancies.
+- Install all dependencies.
 
 
 ```bash
@@ -30,6 +30,7 @@ $ npm i
 # watch mode
 $ npm run start:dev
 ```
+- The data base currently in use is ```mongo db ```. with the connection string to the test database already in place. To change it to your own mongo database, you can change the connection string from ``` app.module ```.
 
 - Adding a book to the inventory. Sample book object shown below. The stockStatus will be dynamically derived from the  stock value given.
 ``` POST ``` ``` http://localhost:3000/api/books```
