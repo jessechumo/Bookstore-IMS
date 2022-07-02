@@ -86,7 +86,7 @@ $ npm run test:cov
 |  author.firstName     | string      |
 |author.lastName|string|
 |author.email|string|
-|dateOfBirth|string|
+|author.dateOfBirth|string|
 |yearOfPublication| string|
 | description| string|
  | stock| number|
