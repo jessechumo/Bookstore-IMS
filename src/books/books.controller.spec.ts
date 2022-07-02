@@ -9,16 +9,15 @@ describe('BooksController',() => {
 
     beforeEach(async () => {
         const app: TestingModule = await Test.createTestingModule({
-        //   controllers: [booksController],
+          controllers: [booksController],
           providers: [BooksService],
         }).compile();
 
-        controller = module.get<booksController>(booksController);
 
 })
 })
 
 
-it('should get all Books', async () => {
-    expect(await booksController.getBooks()).toBe("")
-  }) 
+// it('should get all Books', async () => {
+//     expect(await booksController.getBooks()).toBe("")
+//   }) 
