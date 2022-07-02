@@ -22,7 +22,7 @@ $ git clone https://github.com/Jesse-Bett/Bookstore-IMS.git
 $ npm i
 ```
 
-- The data base currently in use is ```mongo db ```. with the connection string to the test database already in place. To change it to your own mongo database, you can change the connection string from ``` app.module ```.
+- The data base currently in use is ```mongo db ``` with the connection string to the test database already in place. To change it to your own mongo database, you can edit the connection string in ``` app.module ```.
 
 ## Running the app
 
