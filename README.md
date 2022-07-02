@@ -1,7 +1,8 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
+ 
 
 ## Description
 
@@ -91,7 +92,7 @@ $ npm run test:cov
 | description| string|
  | stock| number|
 |stockStatus| string|
-|stockHistory| number|
+|stockHistory| Array|
 
 - Todo, Change datatypes for author.email,author.dateOfBirth and yearOfPublication and perform data validation.
 
