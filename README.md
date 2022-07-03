@@ -45,7 +45,7 @@ $ npm run start:dev
 |/api/authors|GET|Get all authors|
 |/api/authors/James|GET|Get a single author|
 |/api/books/yearOfPublication/2008|GET|Get a book by year of publication|
-|/api/stock/|POST|Add stock|
+|/api/stock/|POST|Add stock. Use the book ISBN|
 
 
 
@@ -66,10 +66,6 @@ $ npm run start:dev
 ```
 
 
-
-
-- Update stock.uses update by id.
-```PUT``` ```http://localhost:300062be3ece8cf778bade2b28d3```
 
 ## Test
 
