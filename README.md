@@ -45,7 +45,11 @@ $ npm run start:dev
 |/api/authors|GET|Get all authors|
 |/api/authors/James|GET|Get a single author|
 |/api/books/yearOfPublication/2008|GET|Get a book by year of publication|
-|/api/stock/|POST|Add stock. Use the book ISBN|
+|/api/stock|POST|Add stock. Use the book ISBN|
+|/api/stock|GET|Get all stock listings|
+|/api/stock/987885-673789-4525|GET|Get a single stock using ISBN|
+|/api/stock/987885-673789-4525|PUT|Update a single stock using ISBN|
+
 
 
 
@@ -62,6 +66,27 @@ $ npm run start:dev
     "description":"become an ace in data structures today",
     "yearOfPublication":"2008",
     "ISBN": "2345-9875-6739"
+}
+```
+
+- A sample stock object is shown below. When updating stock, only the ISBN and quantity is required.The rest of the data is dynamically generated. 
+
+```
+{
+  "ISBN": "987885-673789-4525",
+    "quantity": 0,
+    "status": "out of stock",
+    "history": [
+        21,
+        1,
+        0,
+        24,
+        45,
+        4,
+        7,
+        21,
+        0
+    ]
 }
 ```
 
