@@ -1,7 +1,8 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
+ 
 
 ## Description
 
@@ -14,12 +15,14 @@ A Rest API for managing a bookstore inventory.
 $ git clone https://github.com/Jesse-Bett/Bookstore-IMS.git 
 ```  
 
-- Install all dependancies.
+- Install all dependencies.
 
 
 ```bash
 $ npm i
 ```
+
+- The data base currently in use is ```mongo db ``` with the connection string to the test database already in place. To change it to your own mongo database, you can edit the connection string in ``` app.module ```.
 
 ## Running the app
 
@@ -30,7 +33,9 @@ $ npm i
 $ npm run start:dev
 ```
 
+
 ## Endpoints
+
 
 |Link|Method|Description|
 |----|------|----------- |
@@ -100,6 +105,7 @@ $ npm run test:cov
 | quantity| number|
 |status| string|
 |history| Array|
+
 
 - Todo, Change datatypes for author.email,author.dateOfBirth and yearOfPublication and perform data validation.
 

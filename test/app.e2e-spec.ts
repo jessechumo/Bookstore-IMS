@@ -18,8 +18,13 @@ describe('AppController (e2e)', () => {
 
   it('/ (GET)', () => {
     return request(app.getHttpServer())
-      .get('/api/books/:id')
+      .get('/api/books')
       .expect(200)
-      .expect(Object);
+  });
+
+  it('Should GET all authors', () => {
+    return request(app.getHttpServer())
+      .get('/api/books')
+      .expect(200)
   });
 });
