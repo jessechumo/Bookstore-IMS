@@ -1,7 +1,5 @@
-import { Body, Controller, Post, Get, Param, Patch, Put } from '@nestjs/common';
-import { Stock } from './stock.model';
+import { Body, Controller, Post, Get, Param, Put } from '@nestjs/common';
 import { StockService } from './stock.service';
-import { UpdateStockDto } from './updateStock.dto';
 
 @Controller('api')
 export class stockController {
@@ -10,10 +8,11 @@ export class stockController {
   //Add stock
   @Post('stock')
   async addStock(
-    @Body('ISBN') bookISBN: string,
+    @Body('ISBN') bookISBN : string,
     @Body('quantity') stockQuantity: number,
     @Body('status') stockStatus: string,
     @Body('history') stockHistory: Array<number>,
+  
   ) {
     const feedback = await this.stockService.addStock(
       bookISBN,
@@ -25,13 +24,28 @@ export class stockController {
     return feedback;
   }
 
+  // get all stock
+  @Get('stock')
+  async getStocks() {
+    const stocks = await this.stockService.getStocks();
+    return stocks;
+  }
+
+  // get a single stock by ISBN
+  @Get('stock/:ISBN')
+  async getBook(@Param('ISBN') ISBN: string) {
+    const stock = await this.stockService.getStock(ISBN);
+    return stock;
+  }
+
   // Update stock
-  @Put('stock/:id')
+  @Put('stock/:ISBN')
   async updateStock(
-    @Param('id') id: string,
-    @Body() updateStockDto: UpdateStockDto,
-  ): Promise<Stock> {
-    const newStock = await this.stockService.updateStock(id, updateStockDto);
-    return newStock;
+    @Body('ISBN') bookISBN: string,
+    @Body('quantity') stockQuantity: number,
+    @Body('status') stockStatus: string,
+  ) {
+      const feedback = await this.stockService.updateStock(bookISBN,stockQuantity,stockStatus);
+      return feedback;
   }
 }
