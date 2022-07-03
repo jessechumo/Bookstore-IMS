@@ -34,9 +34,22 @@ $ npm run start:dev
 ```
 
 
-- Adding a book to the inventory. Sample book object shown below. The stockStatus will be dynamically derived from the  stock value given.
-``` POST ``` ``` http://localhost:3000/api/books```
+## Endpoints
 
+
+|Link|Method|Description|
+|----|------|----------- |
+|/api/books|POST|Add a book to the inventory|
+|/api/books|GET|Get all books|
+|/api/books/62b87b9f4159e1dcfab4f204|GET|Get a book by id|
+|/api/authors|GET|Get all authors|
+|/api/authors/James|GET|Get a single author|
+|/api/books/yearOfPublication/2008|GET|Get a book by year of publication|
+|/api/stock/|POST|Add stock|
+
+
+
+- A sample book object is shown below.
 ```
 {
     "title":"C and C++",
@@ -48,28 +61,15 @@ $ npm run start:dev
     },
     "description":"become an ace in data structures today",
     "yearOfPublication":"2008",
-     "stock":7
+    "ISBN": "2345-9875-6739"
 }
 ```
 
-- Get all books.
-```GET``` ```http://localhost:3000/api/books```
 
 
-- Get a book by id.
-```GET``` ```http://localhost:3000/api/books/62b87b9f4159e1dcfab4f204```
-
-- Get all authors.
-```GET``` ```http://localhost:3000/api/authors```
-
-- Get a single author.
-```GET``` ```http://localhost:3000/api/authors/James```
-
-- Get a book by year of publication.
-```GET``` ```http://localhost:3000/api/books/yearOfPublication/2008```
 
 - Update stock.uses update by id.
-```PUT``` ```http://localhost:3000/api/books/stock/62be3ece8cf778bade2b28d3```
+```PUT``` ```http://localhost:300062be3ece8cf778bade2b28d3```
 
 ## Test
 
@@ -82,20 +82,30 @@ $ npm run test:cov
 ```
 ## Database Design
 
-| Field       | Data Type   |
-| ----------- | ----------- |
-|  _id    |   string    |
+- Book database.
+
+| Field       | Data Type |
+|-------------|-----------|
+|  _id        |   string    |
 |  title      |   string    |
 |  author     | Object      |
-|  author.firstName     | string      |
-|author.lastName|string|
-|author.email|string|
-|author.dateOfBirth|string|
-|yearOfPublication| string|
-| description| string|
- | stock| number|
-|stockStatus| string|
-|stockHistory| Array|
+|author.firstName| string   |
+|author.lastName|string     |
+|author.email|string        |
+|author.dateOfBirth|string  |
+|yearOfPublication| string  |
+| description| string       |
+|ISBN        | string       | 
+
+- Stock database.
+
+| Field       | Data Type |
+|-------------|-----------|
+|ISBN| String|
+| quantity| number|
+|status| string|
+|history| Array|
+
 
 - Todo, Change datatypes for author.email,author.dateOfBirth and yearOfPublication and perform data validation.
 
