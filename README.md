@@ -128,5 +128,5 @@ $ npm run test:cov
 |history| Array|
 
 
-- Todo, Change datatypes for author.email,author.dateOfBirth and yearOfPublication and perform data validation.
+
 
