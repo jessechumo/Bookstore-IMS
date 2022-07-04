@@ -1,5 +1,5 @@
 import { Body, Controller, Post, Get, Param } from '@nestjs/common';
-import { Author, Book } from './books.model';
+import { Author } from './books.model';
 import { BooksService } from './books.service';
 
 @Controller('api')
@@ -8,7 +8,7 @@ export class booksController {
 
   // Adding a book
   @Post('books')
-  async addBooks(
+  async addBook(
     @Body('title') bookTitle: string,
     @Body('author') bookAuthor: Author,
     @Body('yearOfPublication') bookYP: string,

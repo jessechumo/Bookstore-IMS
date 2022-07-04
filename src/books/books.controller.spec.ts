@@ -1,85 +1,30 @@
-// import { Test, TestingModule } from '@nestjs/testing';
-// import { booksController } from './books.controller';
-// import { BooksService } from './books.service';
-// import { getModelToken } from '@nestjs/mongoose';
-// import * as request from 'supertest';
-// import { INestApplication } from '@nestjs/common';
-// import { AppModule } from 'src/app.module';
-// import mongoose from 'mongoose';
-// import {Book} from './books.model'
 
-// jest.setTimeout(50000);
-
-// describe('BooksController',() => {
-//     // let controller: booksController;
-//     let app: INestApplication;
-//     // __esModule : true
-
-//     beforeEach(async () => {
-
-//         const moduleFixture : TestingModule = await Test.createTestingModule({
-//           imports : [AppModule],
-//           controllers: [booksController],
-//           providers: [BooksService],
-//         }).compile();
-
-//         app = moduleFixture.createNestApplication();
-//         await app.init();
-//     });
-//         afterAll(()=> mongoose.disconnect());
-
-//         const mockBook = {
-//           "title":"C and C++",
-//           "author":{
-//               "firstName":"Vinu",
-//               "lastName":"vii",
-//               "email":"vinuv@gmail.com",
-//               "dateOfBirth":"21-12-1967"
-//           },
-//           "description":"become an ace in data structures today",
-//           "yearOfPublication":"2008",
-//            "stock":7
-//       }
-
-//       it('Should add a new book', () =>{
-//         return request(app.getHttpServer())
-//         .post('/api/books')
-//         .send(mockBook)
-//         .expect(201)
-//       });
-  
-            
-// })
-
-
-
-
-// it('should get all Books', async () => {
-//     expect(await booksController.getBooks()).toBe("")
-//   }) 
-
-
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { Test, TestingModule } from '@nestjs/testing';
 import { booksController } from './books.controller';
 import { BooksService } from './books.service';
-import { Author, Book,} from './books.model';
-import * as  request  from 'supertest';
-import { INestApplication } from '@nestjs/common';
 
 describe('AppController', () => {
-  let BooksController: booksController;
-  let app:INestApplication
+  let controller: booksController;
 
+  const mockBookService = {
+    addBook:jest.fn((feedback) =>{
+       return{
+        id: Date.now(),
+        ...feedback
+       }
+    })
+  }
+
+  
   beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    const module: TestingModule = await Test.createTestingModule({
       controllers: [booksController],
       providers: [BooksService],
-    }).compile();
+    }).overrideProvider(BooksService).useValue(mockBookService).compile();
 
-    app = moduleFixture.createNestApplication()
-    await app.init()
+    controller = module.get<booksController>(booksController);
 
-    BooksController = app.get<booksController>(booksController);
   });
 
   
@@ -95,16 +40,36 @@ describe('AppController', () => {
     },
     "description":"become an ace in data structures today",
     "yearOfPublication":"2008",
-     "stock":7
+     "ISBN":"4658388-89532845-23898934"
   }
 
-  describe('root', () => {
-    it('should get all books', () => {
-      return request(app.getHttpServer())
-      .get('/api/books')
-      .expect(200)
-      
-    });
+  it('should be defined',()=>{
+    expect(controller).toBeDefined()
   });
+
+  it('should add a book',()=>{
+    expect(controller.addBook (
+      mockBook.title,
+      mockBook.author,
+      mockBook.description,
+      mockBook.yearOfPublication,
+      mockBook.ISBN
+   )).toEqual({
+    id:expect.any(Number),
+     mockBook
+   })
+  })
+
+  expect(mockBookService.addBook).toHaveBeenCalled();
+
+  
+  
+    it('should get all books', () => {
+      expect(controller.getBooks()).toHaveProperty([])
+  });
+
+  it('should get a book', () => {
+    expect(controller.getBook("randomId")).toHaveProperty("title")
+ });
 
 });
