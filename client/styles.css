@@ -1,0 +1,40 @@
+body{
+  font-family: 'Poppins', sans-serif;;
+}
+h2,p,li {
+  padding-left: 2%;
+}
+
+div{
+  width: fit-content;
+  padding: 1%;
+  border-radius: 4px;
+  background-color: #D0DCE5;
+  opacity: 90%;
+}
+
+
+
+
+table.GeneratedTable {
+  width: 50%;
+  margin: 1% 2% 2% 2%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #93A7B3;
+  border-style: solid;
+  color: #000000;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #93A7B3;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #93A7B3;
+}
+

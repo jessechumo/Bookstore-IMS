@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+
+</head>
+
+<body>
+  
+  
+
+
+
+  <h2 id="endpoints">Endpoints</h2>
+  <table class="GeneratedTable">
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Method</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>/api/books</td>
+        <td>POST</td>
+        <td>Add a book to the inventory</td>
+      </tr>
+      <tr>
+        <td>/api/books</td>
+        <td>GET</td>
+        <td>Get all books</td>
+      </tr>
+      <tr>
+        <td>/api/books/62b87b9f4159e1dcfab4f204</td>
+        <td>GET</td>
+        <td>Get a book by id</td>
+      </tr>
+      <tr>
+        <td>/api/authors</td>
+        <td>GET</td>
+        <td>Get all authors</td>
+      </tr>
+      <tr>
+        <td>/api/authors/James</td>
+        <td>GET</td>
+        <td>Get a single author</td>
+      </tr>
+      <tr>
+        <td>/api/books/yearOfPublication/2008</td>
+        <td>GET</td>
+        <td>Get a book by year of publication</td>
+      </tr>
+      <tr>
+        <td>/api/stock</td>
+        <td>POST</td>
+        <td>Add stock. Use the book ISBN</td>
+      </tr>
+      <tr>
+        <td>/api/stock</td>
+        <td>GET</td>
+        <td>Get all stock listings</td>
+      </tr>
+      <tr>
+        <td>/api/stock/987885-673789-4525</td>
+        <td>GET</td>
+        <td>Get a single stock using ISBN</td>
+      </tr>
+      <tr>
+        <td>/api/stock/987885-673789-4525</td>
+        <td>PUT</td>
+        <td>Update a single stock using ISBN</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+  <li>A sample book object is shown below.
+    <pre>
+      <div>
+      <code>{
+  <span class="hljs-attr">"title"</span>:<span class="hljs-string">"C and C++"</span>,
+  <span class="hljs-attr">"author"</span>:{
+      <span class="hljs-attr">"firstName"</span>:<span class="hljs-string">"Vinu"</span>,
+      <span class="hljs-attr">"lastName"</span>:<span class="hljs-string">"vii"</span>,
+      <span class="hljs-attr">"email"</span>:<span class="hljs-string">"vinuv@gmail.com"</span>,
+      <span class="hljs-attr">"dateOfBirth"</span>:<span class="hljs-string">"21-12-1967"</span>
+  },
+  <span class="hljs-attr">"description"</span>:<span class="hljs-string">"become an ace in data structures today"</span>,
+  <span class="hljs-attr">"yearOfPublication"</span>:<span class="hljs-string">"2008"</span>,
+  <span class="hljs-attr">"ISBN"</span>: <span class="hljs-string">"2345-9875-6739"</span>
+}
+</code>
+</div>
+</pre>
+  
+<li>A sample stock object is shown below. When updating stock, only the ISBN and quantity is required
+  
+  
+  <pre>
+    <div>
+      <code>{
+  <span class="hljs-attr">"ISBN"</span>: <span class="hljs-string">"987885-673789-4525"</span>,
+    <span class="hljs-attr">"quantity"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"out of stock"</span>,
+    <span class="hljs-attr">"history"</span>: [
+        <span class="hljs-number">21</span>,
+        <span class="hljs-number">1</span>,
+        <span class="hljs-number">0</span>,
+        <span class="hljs-number">24</span>,
+        <span class="hljs-number">45</span>,
+        <span class="hljs-number">4</span>,
+        <span class="hljs-number">7</span>,
+        <span class="hljs-number">21</span>,
+        <span class="hljs-number">0</span>
+    ]
+ }
+</code>
+</div>
+</pre>
+  
+</body>
+</html>
