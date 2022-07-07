@@ -1,4 +1,3 @@
-//add bookService tests
 
 // import { BooksService } from '../src/books/books.service';
 // import { Book, Author, Stock} from '../src/books/books.model';
